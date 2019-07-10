@@ -1,0 +1,27 @@
+adduser:
+  partyName: 'RandomUtil.getChineseName()'
+  gender: "F"
+  areaCode: "22"
+  phone1: 'RandomUtil.getTelephone()'
+  credentialNumber: 'CardUtil.getOneCardNo(null)'
+  emailAddress: 'RandomUtil.getEmail(5, 10)'
+  postalCode: 'RandomUtil.getcode()'
+  vehicleType: '大众'
+  vehicleFrameNo: 'CarUtil.createRandomString(17)'
+  vehicleNumber: 'CarUtil.getPalte()'
+  contactAddress: 'RandomUtil.getRoad()'
+  engineNo: 'CarUtil.createRandomString(10)'
+  registerTime: 'Util.getDate(-500)'
+  insuredueDate: 'Util.getDate(20)'
+  insuredueDate2: 'Util.getDate(20)'
+  insuredueDateFlag: '1'
+  carType: '01'
+  credentialType: '1'
+  dispatched: '07'
+  isOB: 'isOB'
+  isPrivate: 'Y'
+  lastContactBusiness: 'IB'
+  netFlag: 'dxSale'
+  sourceId: '409'
+
+
