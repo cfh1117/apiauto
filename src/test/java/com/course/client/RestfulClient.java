@@ -33,14 +33,14 @@ public class RestfulClient {
     JSONObject responseBody;
     HashMap<String, String> responseHeads;
     List<NameValuePair> formparams;
-    //Í¨¹ıhttpclient»ñÈ¡ÇëÇóµÄ·´À¡
+    //é€šè¿‡httpclientè·å–è¯·æ±‚çš„åé¦ˆ
     public void getResponse(String url) throws ClientProtocolException, IOException {
         httpclient = HttpClients.createDefault();
         httpGet = new HttpGet(url);
         httpResponse = httpclient.execute(httpGet);
     }
 
-    //ÒÔJSON¸ñÊ½»ñÈ¡µ½·´À¡µÄÖ÷Ìå
+    //ä»¥JSONæ ¼å¼è·å–åˆ°åé¦ˆçš„ä¸»ä½“
     public JSONObject getBodyInJSON() throws ParseException, IOException{
         HttpEntity entity;
         String entityToString;
@@ -53,7 +53,7 @@ public class RestfulClient {
         return responseBody;
     }
 
-    //ÒÔ¹şÏ£Í¼µÄ·½Ê½»ñÈ¡µ½·´À¡Í·²¿
+    //ä»¥å“ˆå¸Œå›¾çš„æ–¹å¼è·å–åˆ°åé¦ˆå¤´éƒ¨
     public HashMap<String, String> getHeaderInHash(){
         Header[] headers;
         headers = httpResponse.getAllHeaders();
@@ -69,7 +69,7 @@ public class RestfulClient {
         return    responseHeads;
     }
 
-    //»ñÈ¡·´À¡×´Ì¬Âë
+    //è·å–åé¦ˆçŠ¶æ€ç 
     public int getCodeInNumber(){
         responseCode = httpResponse.getStatusLine().getStatusCode();
 
@@ -77,16 +77,16 @@ public class RestfulClient {
 
         return responseCode;
     }
-    //Í¨¹ıhttpclient»ñÈ¡postÇëÇóµÄ·´À¡
+    //é€šè¿‡httpclientè·å–postè¯·æ±‚çš„åé¦ˆ
     public void sendPost(String url, List<NameValuePair> params, HashMap<String, String> headers) throws ClientProtocolException, IOException{
-        //´´½¨postÇëÇó¶ÔÏó
+        //åˆ›å»ºpostè¯·æ±‚å¯¹è±¡
         httpPost = new HttpPost(url);
-        //ÉèÖÃÇëÇóÖ÷Ìå¸ñÊ½
+        //è®¾ç½®è¯·æ±‚ä¸»ä½“æ ¼å¼
 //        UrlEncodedFormEntity entity=new UrlEncodedFormEntity(params, Charset.forName("GBK"));
 //        httpPost.setEntity(entity);
 //        System.out.println(entity);
         httpPost.setEntity(new UrlEncodedFormEntity(params, Charset.forName("GBK")));
-//        //ÉèÖÃÍ·²¿ĞÅÏ¢
+//        //è®¾ç½®å¤´éƒ¨ä¿¡æ¯
         Set<String> set = headers.keySet();
         for(Iterator<String> iterator = set.iterator(); iterator.hasNext();){
             String key = iterator.next();
@@ -97,14 +97,15 @@ public class RestfulClient {
         httpResponse = httpclient.execute(httpPost);
     }
 
-    //POST±íµ¥Ìí¼Ó²ÎÊı
+    //POSTè¡¨å•æ·»åŠ å‚æ•°
     public List<NameValuePair> yamladd() throws FileNotFoundException {
         String file = Constants.File_Path + Constants.File_Name2;
 //        System.out.println(file);
         Yaml yaml = new Yaml();
         File dumpFile = new File(file);
-        //»ñÈ¡test.yamlÎÄ¼şÖĞµÄÅäÖÃÊı¾İ£¬È»ºó×ª»»Îªobj£¬
+        //è·å–test.yamlæ–‡ä»¶ä¸­çš„é…ç½®æ•°æ®ï¼Œç„¶åè½¬æ¢ä¸ºobjï¼Œ
         Map<String, String> map = (Map<String, String>) yaml.load(new FileInputStream(dumpFile));
+//        System.out.println(map);
         Iterator iter = map.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry entry = (Map.Entry) iter.next();
@@ -112,11 +113,12 @@ public class RestfulClient {
             Object val = entry.getValue();
 
             Map<String, String> map1 = (Map<String, String>) val;
-
-             formparams = new ArrayList<NameValuePair>();
+//            System.out.println(map1);
+            formparams = new ArrayList<NameValuePair>();
             for (String key1 : map1.keySet()) {
-                //½«LinkedHashMapµÄvalueÔÙ¹¹½¨Ò»¸öMap´Ó¶øÄÜÈ¡µ½×îÀïÃæµÄÖµ
-                // System.out.println("key= " + key1.trim() + "; value= " + map1.get(key1));
+                //å°†LinkedHashMapçš„valueå†æ„å»ºä¸€ä¸ªMapä»è€Œèƒ½å–åˆ°æœ€é‡Œé¢çš„å€¼
+//                System.out.println(map1.get(key1));
+//                 System.out.println("key= " + key1.trim() + "; value= " + map1.get(key1));
                 NameValuePair pair = new BasicNameValuePair(key1, map1.get(key1));
                 if (map1.get(key1).equalsIgnoreCase("RandomUtil.getChineseName()")) {
                     pair = new BasicNameValuePair(key1, RandomUtil.getChineseName());
@@ -140,13 +142,20 @@ public class RestfulClient {
                     pair = new BasicNameValuePair(key1, Util.getDate(20));
                 } else if (map1.get(key1).equalsIgnoreCase("Util.getDate(-500)")) {
                     pair = new BasicNameValuePair(key1, Util.getDate(-500));
+                }else if (map1.get(key1).trim().equals("çŸ³å®¶åº„")||map1.get(key1)=="çŸ³å®¶åº„"){
+                    pair = new BasicNameValuePair(key1,"22");
+                }else if (map1.get(key1).equalsIgnoreCase("æ­å·")){
+                    pair = new BasicNameValuePair(key1, "09");
+                }else if (map1.get(key1).equalsIgnoreCase("æ­¦æ±‰")){
+                    pair = new BasicNameValuePair(key1, "12");
+                }else if (map1.get(key1).equalsIgnoreCase("è¥¿å®‰")){
+                    pair = new BasicNameValuePair(key1, "72");
                 }
                 formparams.add(pair);
             }
 
-
         }
-//        System.out.println(formparams);
+        System.out.println(formparams);
         return formparams;
     }
 }

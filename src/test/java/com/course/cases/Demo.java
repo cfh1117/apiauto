@@ -1,15 +1,5 @@
 package com.course.cases;
 
-import com.course.client.RestfulClient;
-import com.course.utils.Constants;
-import com.course.utils.ExcelUtil;
-import com.course.utils.RandomUtil;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Demo {
     public static void main(String[] args) throws Exception {
 //        ExcelUtil.setExcelFile(Constants.File_Path + Constants.File_Name, "新增客户");

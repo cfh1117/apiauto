@@ -1,7 +1,7 @@
 adduser:
   partyName: 'RandomUtil.getChineseName()'
   gender: "F"
-  areaCode: "22"
+  areaCode: "72"
   phone1: 'RandomUtil.getTelephone()'
   credentialNumber: 'CardUtil.getOneCardNo(null)'
   emailAddress: 'RandomUtil.getEmail(5, 10)'

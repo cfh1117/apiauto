@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/test/java/com/course/cases/Demo.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/course/client/RestfulClient.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/course/utils/CardUtil.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/resources/data.yaml" charset="UTF-8" />
   </component>
